@@ -1,0 +1,13 @@
+---
+- name: h1
+  hosts: 127.0.0.1
+
+  pre_tasks: 
+       - debug:
+          msg: "Pre Task Output for Install Roles"
+  roles: 
+    - role: './roles/install'
+
+  post_tasks:
+       - debug:
+          msg: "Post Task Output for Install Roles"

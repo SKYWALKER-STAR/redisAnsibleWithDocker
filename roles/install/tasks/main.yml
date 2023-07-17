@@ -1,0 +1,5 @@
+- name: Create Related Dir
+  ansible.builtin.import_tasks: createRelatedDir.yml
+
+- name: Compile And Install
+  ansible.builtin.import_tasks: compileAndInstall.yml

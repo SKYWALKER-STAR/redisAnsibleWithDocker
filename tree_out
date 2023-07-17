@@ -1,0 +1,40 @@
+.
+├── inventory
+├── main.yml
+├── roles
+│   ├── cluster
+│   │   ├── files
+│   │   ├── handlers
+│   │   ├── tasks
+│   │   ├── templates
+│   │   └── vars
+│   ├── install
+│   │   ├── files
+│   │   ├── handlers
+│   │   ├── meta
+│   │   ├── tasks
+│   │   ├── templates
+│   │   └── vars
+│   ├── master
+│   │   ├── files
+│   │   ├── handlers
+│   │   ├── tasks
+│   │   ├── templates
+│   │   └── vars
+│   ├── sentinel
+│   │   ├── files
+│   │   ├── handlers
+│   │   ├── tasks
+│   │   ├── templates
+│   │   └── vars
+│   └── slave
+│       ├── files
+│       ├── handlers
+│       ├── tasks
+│       ├── templates
+│       └── vars
+├── startup.sh
+├── stop.sh
+└── tree_out
+
+32 directories, 5 files

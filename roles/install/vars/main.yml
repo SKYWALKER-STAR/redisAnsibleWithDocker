@@ -1,0 +1,5 @@
+username: ming
+usergroup: ming
+
+redis_source_code: redis-7.0.12.tar.gz
+redis_source_code_unarchived: redis-7
