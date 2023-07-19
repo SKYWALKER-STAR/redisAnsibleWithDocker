@@ -1,13 +1,15 @@
 ---
-- name: h1
+- name: Main Playbook
   hosts: 127.0.0.1
+  vars: 
+    DEBUG_INSTALL: true
 
   pre_tasks: 
        - debug:
           msg: "Pre Task Output for Install Roles"
   roles: 
-    - role: './roles/install'
-
+    #- role: './roles/install'
+    - role: './roles/master'
   post_tasks:
        - debug:
           msg: "Post Task Output for Install Roles"

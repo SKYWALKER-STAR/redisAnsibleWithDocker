@@ -1,0 +1,5 @@
+master_config_file_name: redis-6379.conf
+username: ming
+usergroup: ming
+
+master_log_file_name: redis-6379.log

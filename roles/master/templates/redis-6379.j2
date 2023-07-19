@@ -1,0 +1,19 @@
+bind 0.0.0.0
+port 6379
+daemonize yes
+protected-mode no
+requirepass "password"
+masterauth "passwd"
+dir "/data/software/redis/master"
+logfile "/data/logs/redis/master/master-6379.log"
+appendonly yes
+appendfilename "master-6379.aof" 
+appendfsync everysec
+maxmemory 300M
+maxmemory-lazy-policy volatile-lfu
+lazyfree-lazy-eviction yes
+lazyfree-lazy-expire yes
+lazyfree-lazy-server-del yes
+tcp-backlog 511
+tcp-keepalive 300
+
