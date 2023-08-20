@@ -22,3 +22,6 @@
     - src
     - conf
     - logs
+    - master
+    - slave
+    - sentinel

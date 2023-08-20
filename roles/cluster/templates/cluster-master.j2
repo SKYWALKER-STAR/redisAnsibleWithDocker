@@ -1,0 +1,22 @@
+bind 0.0.0.0
+port 7001
+daemonize yes
+cluster-enabled yes
+cluster-config-file "{{ cluster_node_config_master }}"
+cluster-node-timeout 15000
+protected-mode no
+dir "{{ cluster_run_dir_master }}"
+appendonly yes
+appendfilename "appendonly-7001.aof"
+logfile "{{ redis_base_dir }}{{ cluster_config_all }}{{ cluster_config_dir_master }}{{ cluster_config_file_name_master }}"
+cluster-replica-no-failover no
+masterauth "password"
+requirepass "password"
+maxmemory 10MB
+maxmemory-policy volatile-lfu
+lazyfree-lazy-eviction yes
+lazyfree-lazy-expire yes
+lazyfree-lazy-server-del yes
+tcp-backlog 511
+tcp-keepalive 300
+

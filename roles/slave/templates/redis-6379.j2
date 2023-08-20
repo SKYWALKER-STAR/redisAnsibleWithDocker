@@ -1,11 +1,12 @@
 bind 0.0.0.0
-port 6379
+port 6380
 daemonize yes
 protected-mode no
 requirepass "{{ password }}"
 masterauth "{{ password }}"
+replicaof "{{ master_ip }}" "{{ master_port }}"
 dir "{{ runningDir }}"
-logfile "{{ logDir }}/redis-6379-master.log"
+logfile "{{ logDir }}/redis-6379-slave.log"
 appendonly yes
 appendfilename "master-6379.aof" 
 appendfsync everysec
@@ -16,3 +17,4 @@ lazyfree-lazy-expire yes
 lazyfree-lazy-server-del yes
 tcp-backlog 511
 tcp-keepalive 300
+

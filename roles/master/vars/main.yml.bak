@@ -1,0 +1,9 @@
+master_config_file_name: redis-6379-master.conf
+master_log_file_name: redis-6379-master.log
+
+username: ming
+usergroup: ming
+
+password: password
+runningDir: "/home/{{ username }}/redis/master"
+logDir: "/home/{{ username }}/redis/logs"

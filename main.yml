@@ -1,15 +1,45 @@
 ---
 - name: Main Playbook
-  hosts: 127.0.0.1
+  hosts: target
   vars: 
     DEBUG_INSTALL: true
 
   pre_tasks: 
        - debug:
-          msg: "Pre Task Output for Install Roles"
+          msg: "Configuring cluster sentinel master slave"
+       - name: Include Related Var Files
+         ansible.builtin.include_vars: 
+           file: "vars.yml"
+           name: vars_rv
   roles: 
-    #- role: './roles/install'
-    - role: './roles/master'
-  post_tasks:
-       - debug:
-          msg: "Post Task Output for Install Roles"
+    - role: './roles/install'
+    #- role: './roles/master'
+    #- role: './roles/slave'
+    - role: './roles/sentinel'
+    #- role: './roles/cluster'
+
+  tasks:
+    #- name: Starting Single Master Node Of Redis
+    #  ansible.builtin.command:
+    #   cmd: "{{ vars_rv.redis_base_dir }}/bin/redis-server {{ vars_rv.redis_base_dir }}/conf/{{ vars_rv.master_config_file_name }}"
+    #  ignore_errors: True
+
+    #- name: Starting Single slave Node Of Redis
+    #  ansible.builtin.command:
+    #    cmd: "{{ vars_rv.redis_base_dir }}/bin/redis-server {{ vars_rv.redis_base_dir }}/conf/{{ vars_rv.slave_config_file_name }}"
+    #  ignore_errors: True
+
+    - name: Starting Sentinel Nodes Of Redis
+      ansible.builtin.command:
+        cmd: "{{ vars_rv.redis_base_dir }}/bin/redis-server {{ vars_rv.redis_base_dir }}/conf/{{ vars_rv.sentinel_config_file_name }} --sentinel"
+      ignore_errors: True
+
+    #- name: Starting Cluster Nodes Of Redis-master
+    #  ansible.builtin.command:
+    #    cmd: "{{ vars_rv.redis_base_dir }}/bin/redis-server {{ vars_rv.redis_base_dir }}/conf/cluster/master{{ vars_rv.cluster_config_file_name_master }}"
+    #  ignore_errors: True
+
+    #- name: Starting Cluster Nodes Of Redis-slave
+    #  ansible.builtin.command:
+    #    cmd: "{{ vars_rv.redis_base_dir }}/bin/redis-server {{ vars_rv.redis_base_dir }}/conf/cluster/slave{{ vars_rv.cluster_config_file_name_slave }}"
+    #  ignore_errors: True

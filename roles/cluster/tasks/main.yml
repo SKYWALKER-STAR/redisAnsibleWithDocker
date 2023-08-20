@@ -1,0 +1,94 @@
+---
+- name: Create Master configuration dir
+  ansible.builtin.file: 
+   path: "{{ redis_base_dir }}{{ cluster_config_all }}{{ cluster_config_dir_master }}"
+   state: directory
+   owner: "{{ username }}"
+   group: "{{ usergroup }}"
+
+- name: Create Slave configuration dir
+  ansible.builtin.file: 
+   path: "{{ redis_base_dir }}{{ cluster_config_all }}{{ cluster_config_dir_slave }}"
+   state: directory
+   owner: "{{ username }}"
+   group: "{{ usergroup }}"
+
+- name: Create Master config file
+  ansible.builtin.template: 
+    src: templates/cluster-master.j2
+    dest: "{{ redis_base_dir }}{{ cluster_config_all }}{{ cluster_config_dir_master }}{{ cluster_config_file_name_master }}"
+    owner: "{{ username }}"
+    group: "{{ usergroup }}"
+    backup: yes
+
+- name: Create Slave config file
+  ansible.builtin.template: 
+    src: templates/cluster-slave.j2
+    dest: "{{ redis_base_dir}}{{ cluster_config_all }}{{ cluster_config_dir_slave }}{{ cluster_config_file_name_slave }}"
+    owner: "{{ username }}"
+    group: "{{ usergroup }}"
+    backup: yes
+
+- name: Creat master run data dir
+  ansible.builtin.file: 
+    path: "{{ cluster_run_dir_master }}"
+    state: directory
+    force: true
+    owner: "{{ username }}"
+    group: "{{ usergroup }}"
+
+- name: Creat slave run data dir
+  ansible.builtin.file: 
+    path: "{{ cluster_run_dir_slave }}"
+    state: directory
+    force: true
+    owner: "{{ username }}"
+    group: "{{ usergroup }}"
+
+- name: Create Node Config Dir for master
+  ansible.builtin.file: 
+    path:  "{{ cluster_node_config_master }}"
+    state: touch
+    force: true
+    owner: "{{ username }}"
+    group: "{{ usergroup }}"
+
+- name: Create Node Config Dir for slave
+  ansible.builtin.file: 
+    path: "{{ cluster_node_config_slave }}"
+    state: touch
+    force: true
+    owner: "{{ username }}"
+    group: "{{ usergroup }}"
+
+- name: Create Log Dir Master
+  ansible.builtin.file: 
+    path: "{{ cluster_log_dir_master }}"
+    state: directory
+    force: true
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Create Log Dir Slave
+  ansible.builtin.file: 
+    path: "{{ cluster_log_dir_slave }}"
+    state: directory
+    force: true
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Create Log file Master
+  ansible.builtin.file: 
+    path: "{{ cluster_log_dir_master }}"
+    state: touch
+    force: true
+    owner: "{{ username }}"
+    group: "{{ usergroup }}"
+
+- name: Create Log file slave
+  ansible.builtin.file: 
+    path: "{{ cluster_log_dir_slave }}"
+    state: touch
+    force: true
+    owner: "{{ username }}"
+    group: "{{ usergroup }}"

@@ -3,3 +3,5 @@ usergroup: ming
 
 redis_source_code: redis-7.0.12.tar.gz
 redis_source_code_unarchived: redis-7
+
+redis_install_dir: "/home/{{ username }}/redis/"
