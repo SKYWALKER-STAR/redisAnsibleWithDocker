@@ -1,16 +1,7 @@
 ---
-
-- name: Touch Configuration File
-  ansible.builtin.file:
-    path: "/home/{{ username }}/redis/conf/{{ slave_config_file_name }}"
-    force: true
-    state: touch
-    owner: "{{ username }}"
-    group: "{{ usergroup }}"
-
 - name: Touch Log file
   ansible.builtin.file:
-    path: "/home/{{ username }}/redis/logs/{{ slave_log_file_name }}"
+    path: "{{ redis_base_dir }}{{ logDir }}{{ slave_log_file_name }}"
     force: true
     state: touch
     owner: "{{ username }}"
@@ -19,7 +10,15 @@
 - name: Write Configuration File
   ansible.builtin.template:
     src: templates/redis-6379.j2
-    dest: "/home/{{ username }}/redis/conf/{{ slave_config_file_name }}"
+    dest: "{{ redis_base_dir }}{{ confDir }}{{ slave_config_file_name }}"
     owner: "{{ username }}"
     group: "{{ usergroup }}"
     backup: yes
+
+- name: Create Slave Runing Dir
+  ansible.builtin.file: 
+    path: "{{ redis_base_dir }}{{ runningDirSlave }}"
+    force: true
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ usergroup }}"

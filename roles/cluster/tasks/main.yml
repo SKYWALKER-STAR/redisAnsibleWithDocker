@@ -31,7 +31,7 @@
 
 - name: Creat master run data dir
   ansible.builtin.file: 
-    path: "{{ cluster_run_dir_master }}"
+    path: "{{ redis_base_dir }}{{ cluster_run_dir_master }}"
     state: directory
     force: true
     owner: "{{ username }}"
@@ -39,7 +39,7 @@
 
 - name: Creat slave run data dir
   ansible.builtin.file: 
-    path: "{{ cluster_run_dir_slave }}"
+    path: "{{ redis_base_dir}}{{ cluster_run_dir_slave }}"
     state: directory
     force: true
     owner: "{{ username }}"
@@ -47,7 +47,7 @@
 
 - name: Create Node Config Dir for master
   ansible.builtin.file: 
-    path:  "{{ cluster_node_config_master }}"
+    path:  "{{ redis_base_dir }}{{ cluster_node_config_master }}"
     state: touch
     force: true
     owner: "{{ username }}"
@@ -55,7 +55,7 @@
 
 - name: Create Node Config Dir for slave
   ansible.builtin.file: 
-    path: "{{ cluster_node_config_slave }}"
+    path: "{{ redis_base_dir }}{{ cluster_node_config_slave }}"
     state: touch
     force: true
     owner: "{{ username }}"
@@ -63,7 +63,7 @@
 
 - name: Create Log Dir Master
   ansible.builtin.file: 
-    path: "{{ cluster_log_dir_master }}"
+    path: "{{ redis_base_dir }}{{ cluster_log_dir_master }}"
     state: directory
     force: true
     owner: "{{ username }}"
@@ -71,7 +71,7 @@
 
 - name: Create Log Dir Slave
   ansible.builtin.file: 
-    path: "{{ cluster_log_dir_slave }}"
+    path: "{{ redis_base_dir }}{{ cluster_log_dir_slave }}"
     state: directory
     force: true
     owner: "{{ username }}"
@@ -79,7 +79,7 @@
 
 - name: Create Log file Master
   ansible.builtin.file: 
-    path: "{{ cluster_log_dir_master }}"
+    path: "{{ redis_base_dir }}{{ cluster_log_dir_master }}"
     state: touch
     force: true
     owner: "{{ username }}"
@@ -87,7 +87,7 @@
 
 - name: Create Log file slave
   ansible.builtin.file: 
-    path: "{{ cluster_log_dir_slave }}"
+    path: "{{ redis_base_dir }}{{ cluster_log_dir_slave }}"
     state: touch
     force: true
     owner: "{{ username }}"

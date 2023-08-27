@@ -1,6 +1,7 @@
 #!/bin/bash
 
-ANSIBLE_PLAYBOOK=`which ansible-playbook`
+#ANSIBLE_PLAYBOOK=`which ansible-playbook`
+ANSIBLE_PLAYBOOK="./ansible-playbook"
 
 if [ -z $ANSIBLE_PLAYBOOK ]
 then

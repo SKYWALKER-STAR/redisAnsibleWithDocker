@@ -1,42 +1,24 @@
 ---
-- name: Test Configuration path
-  ansible.builtin.stat: 
-    path: "{{ redis_base_dir }}{{ sentinel_config_dir }}"
-  register: cdir_rv
-
-- name: Create Configuration Path 
-  ansible.builtin.file: 
-    path: "{{ redis_base_dir }}{{ sentinel_config_dir }}"
-    state: directory
-    owner: "{{ username }}"
-    group: "{{ usergroup }}"
-  when: cdir_rv.stat.exists == False
-
 - name: Write Configuration File
   ansible.builtin.template: 
     src: templates/sentinel.j2
-    dest: "{{ sentinel_config_dir}}/{{ sentinel_config_file_name }}"
+    dest: "{{ redis_base_dir }}{{ confDir }}{{ sentinel_config_file_name }}"
     owner: "{{ username }}"
     group: "{{ usergroup }}"
     backup: yes
 
-- name: Test Log Path
-  ansible.builtin.stat: 
-    path: "{{ redis_base_dir }}{{ sentinel_log_dir }}"
-  register: ldir_rv
-
-- name: Create Log Path
-  ansible.builtin.file:
-    path: "{{ redis_base_dir }}{{ sentinel_log_dir }}"
-    state: directory
-    owner: "{{ username }}"
-    group: "{{ usergroup }}"
-  when: ldir_rv.stat.exists == False
-
 - name: Create Log File
   ansible.builtin.file: 
-    path: "{{ redis_base_dir }}{{ sentinel_log_dir }}/{{ sentinel_log_file_name }}"
+    path: "{{ redis_base_dir }}{{ logDir }}{{ sentinel_log_file_name }}"
     state: touch
     force: true
     owner: "{{ username }}"
     group: "{{ usergroup }}"
+
+- name: Create sentinel running  dir
+  ansible.builtin.file: 
+     path: "{{ redis_base_dir }}{{ sentinel_running_dir }}"
+     state: directory
+     force: true
+     owner: "{{ username }}"
+     group: "{{ usergroup }}"

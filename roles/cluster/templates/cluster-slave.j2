@@ -2,10 +2,10 @@ bind 0.0.0.0
 port 7002
 daemonize yes
 cluster-enabled yes
-cluster-config-file "{{ cluster_node_config_slave }}"
+cluster-config-file "{{ redis_base_dir }}{{ cluster_node_config_slave }}"
 cluster-node-timeout 15000
 protected-mode no
-dir "{{ cluster_run_dir_slave }}"
+dir "{{ redis_base_dir }}{{ cluster_run_dir_slave }}"
 appendonly yes
 appendfilename "appendonly-7001.aof"
 logfile "{{ redis_base_dir }}{{ cluster_config_all }}{{ cluster_config_dir_slave }}{{ cluster_config_file_name_slave }}"

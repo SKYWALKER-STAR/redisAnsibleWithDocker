@@ -2,7 +2,7 @@ bind 0.0.0.0
 port 26379
 daemonize yes
 protected-mode no
-logfile "{{ redis_base_dir }}{{ sentinel_log_dir }}{{ sentinel_log_file_name }}"
+logfile "{{ redis_base_dir }}{{ logDir }}{{ sentinel_log_file_name }}"
 dir "{{ redis_base_dir }}{{ sentinel_running_dir }}"
 sentinel monitor mymaster 127.0.0.1 6379 2
 sentinel failover-timeout mymaster 5000

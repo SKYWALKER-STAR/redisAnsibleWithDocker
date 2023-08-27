@@ -1,3 +1,11 @@
 [target]
 192.168.40.139
 192.168.40.131
+
+[debug]
+192.168.40.143 ansible_ssh_port=222
+
+[debug:vars]
+ansible_ssh_user=root
+ansible_ssh_pass=tuyiteng
+ansible_become_pass=tuyiteng

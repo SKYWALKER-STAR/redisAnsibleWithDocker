@@ -1,7 +1,7 @@
 - name: Unarhive source code to remote mechine
   ansible.builtin.unarchive:
    src: "meta/{{ redis_source_code }}"
-   dest: "/home/{{ username }}/redis/src/"
+   dest: "{{ redis_base_dir }}/src/"
    copy: true
    list_files: true
    owner: "{{ username }}"
@@ -11,10 +11,10 @@
 
 - name: Compile Redis
   ansible.builtin.command:
-   chdir: "/home/{{ username }}/redis/src/redis-7.0.12"
+   chdir: "{{ redis_base_dir }}/src/redis-7.0.12"
    cmd: "make"
 
 - name: Install Redis
   ansible.builtin.command: 
-   chdir: "/home/{{ username }}/redis/src/redis-7.0.12"
-   cmd: "make install PREFIX=/home/{{ username }}/redis"
+   chdir: "{{ redis_base_dir }}/src/redis-7.0.12"
+   cmd: "make install PREFIX={{ redis_base_dir }}"

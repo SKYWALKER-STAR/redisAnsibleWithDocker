@@ -1,18 +1,18 @@
 - name: Tell if exists 
   ansible.builtin.stat: 
-    path: "/home/{{ username }}/redis"
+    path: "{{ redis_base_dir }}"
   register: st
 
 - name: Backup redis dir if exists
   ansible.builtin.copy:
-    src: "/home/{{ username }}/redis"
-    dest: "/home/{{ username }}/redis.{{ ansible_date_time.date }}.bak"
+    src: "{{ redis_base_dir }}"
+    dest: "{{ redis_base_dir }}.{{ ansible_date_time.date }}.bak"
     remote_src: yes
   when: st.stat.exists == true
  
 - name: Create Redis Main Directory
   ansible.builtin.file:
-    path: "/home/{{ username }}/redis/{{ item }}"
+    path: "{{ redis_base_dir }}/{{ item }}"
     force: true
     state: directory
     owner: "{{ username }}"
@@ -22,6 +22,3 @@
     - src
     - conf
     - logs
-    - master
-    - slave
-    - sentinel

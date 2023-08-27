@@ -1,30 +1,31 @@
 #Common Variables
-username: ming
-usergroup: ming
+username: root
+usergroup: root
 password: "password"
-redis_base_dir: /home/ming/redis
-
-#Slave Variables
-slave_config_file_name: redis-6379-slave.conf
-slave_log_file_name: redis-6379-slave.log
-slave_log_file_name: redis-6379-slave.log
-master_ip: 192.168.40.130
-master_port: 6379
-runningDir: "/home/ming/redis/slave"
-logDir: "/home/ming/redis/logs"
-
-#Sentinel Variables
-sentinel_config_file_name: sentinel.conf
-sentinel_config_dir: /home/ming/redis/conf
-sentinel_log_file_name: /sentinel.log
-sentinel_log_dir: /sentinel/logs
-sentinel_running_dir: /sentinel
+redis_base_dir: /data/software3/redis
+redis_source_code: redis-7.0.12.tar.gz
+redis_source_code_unarchived: redis-7
 
 #Master Variables
-master_config_file_name: redis-6379-master.conf
-master_log_file_name: redis-6379-master.log
-runningDir: "/home/ming/redis/master"
-logDir: "/home/ming/redis/logs"
+master_config_file_name: /redis-6379-master.conf
+master_log_file_name: /redis-6379-master.log
+runningDirMaster: "/master"
+
+#Slave Variables
+slave_config_file_name: /redis-6379-slave.conf
+slave_log_file_name: /redis-6379-slave.log
+master_ip: 192.168.40.130
+master_port: 6379
+runningDirSlave: "/slave"
+
+#Common Variables with master and slave
+logDir: "/logs" 
+confDir: "/conf"
+
+#Sentinel Variables
+sentinel_config_file_name: /sentinel.conf
+sentinel_log_file_name: /sentinel.log
+sentinel_running_dir: /sentinel
 
 #Cluster Variables
 cluster_config_all: /conf/cluster
@@ -32,9 +33,9 @@ cluster_config_dir_master: /master
 cluster_config_dir_slave: /slave
 cluster_config_file_name_master: /master-7001.conf
 cluster_config_file_name_slave: /slave-7002.conf
-cluster_run_dir_master: "/home/ming/redis/data/cluster/master"
-cluster_run_dir_slave: "/home/ming/redis/data/cluster/slave"
-cluster_log_dir_master: "/home/ming/redis/logs/cluster/master"
-cluster_log_dir_slave: "/home/ming/redis/logs/cluster/slave"
-cluster_node_config_master:  "/home/ming/redis/data/cluster/master/node-master.conf"
-cluster_node_config_slave:  "/home/ming/redis/data/cluster/slave/node-slave.conf"
+cluster_run_dir_master: "/data/cluster/master"
+cluster_run_dir_slave: "/data/cluster/slave"
+cluster_log_dir_master: "/logs/cluster/master"
+cluster_log_dir_slave: "/logs/cluster/slave"
+cluster_node_config_master:  "/data/cluster/master/node-master.conf"
+cluster_node_config_slave:  "/data/cluster/slave/node-slave.conf"

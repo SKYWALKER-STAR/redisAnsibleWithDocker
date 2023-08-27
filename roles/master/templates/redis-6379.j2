@@ -4,8 +4,8 @@ daemonize yes
 protected-mode no
 requirepass "{{ password }}"
 masterauth "{{ password }}"
-dir "{{ runningDir }}"
-logfile "{{ logDir }}/redis-6379-master.log"
+dir "{{ redis_base_dir }}{{ runningDirMaster }}"
+logfile "{{ redis_base_dir}}{{ logDir }}{{ master_log_file_name }}"
 appendonly yes
 appendfilename "master-6379.aof" 
 appendfsync everysec

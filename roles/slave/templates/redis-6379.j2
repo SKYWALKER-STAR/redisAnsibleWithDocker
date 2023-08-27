@@ -5,8 +5,8 @@ protected-mode no
 requirepass "{{ password }}"
 masterauth "{{ password }}"
 replicaof "{{ master_ip }}" "{{ master_port }}"
-dir "{{ runningDir }}"
-logfile "{{ logDir }}/redis-6379-slave.log"
+dir "{{ redis_base_dir }}{{ runningDirSlave }}"
+logfile "{{ redis_base_dir }}{{ logDir }}{{ slave_log_file_name }}"
 appendonly yes
 appendfilename "master-6379.aof" 
 appendfsync everysec
